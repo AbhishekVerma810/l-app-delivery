@@ -1,0 +1,54 @@
+ion-header {
+  ion-toolbar {
+    --background: linear-gradient(#70C5FC, #0E95EE);
+    color: white;
+  }
+}
+
+ion-content {
+
+
+  .container {
+    padding: 16px;
+
+    ion-button {
+      --background: linear-gradient(#70C5FC, #0E95EE);
+      color: white;
+      height: 50px;
+    }
+
+    ion-card {
+      margin-bottom: 16px;
+    }
+
+    ion-list-header {
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    ion-thumbnail {
+      width: 80px;
+      height: 80px;
+    }
+
+    ion-label h2 {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    ion-label p {
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .progress-container {
+      margin: 16px 0;
+      text-align: center;
+    }
+
+    .map {
+      height: 300px;
+      margin-bottom: 16px;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title mode="md">Orders</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="white">
+        <ion-icon name="search-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollX="true">
+  <ion-list>
+    <ion-list-header mode="md" color="light" class="ion-margin-vertical">
+      PENDING ORDERS
+    </ion-list-header>
+    <ion-card *ngFor="let order of pendingOrders">
+      <div>
+        <ion-item lines="none" [detail]="true" class="type">
+          <ion-thumbnail slot="start">
+            <img [src]="order.thumbnailSrc" />
+          </ion-thumbnail>
+          <ion-label>
+            {{ order.title }}
+            <p>
+              <ion-text>{{ order.date }}</ion-text>
+            </p>
+          </ion-label>
+        </ion-item>
+        <ion-row class="pickdrop">
+          <ion-col size="6" class="pick">
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img src="assets/imgs/marker_pick.png" />
+              </ion-thumbnail>
+              <ion-label>{{ order.pickupAddress }}</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <img src="assets/imgs/marker.png" />
+              </ion-thumbnail>
+              <ion-label>{{ order.dropAddress }}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding amount">
+          <ion-text color="dark"
+            >Total ₹<ion-text color="primary">{{ order.amount }}</ion-text></ion-text
+          >
+        </ion-row>
+        <ion-row class="reorder">
+          <ion-col size="12">
+            <ion-button (click)="navigateOrderDetailsPage(order.id)" expand="block">
+              <ion-text>PickUp Order</ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-card>
+  </ion-list>
+</ion-content>

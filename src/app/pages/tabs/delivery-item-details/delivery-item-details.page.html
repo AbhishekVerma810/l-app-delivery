@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Delivery Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <div class="container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Order #{{orderData.id }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Customer Name</ion-label>
+            <ion-note slot="end">{{ orderData.customerName }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>Contact Number</ion-label>
+            <ion-note slot="end">{{orderData.Address.phone_number }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>Pickup Address</ion-label>
+            <ion-note slot="end">{{ orderData.pickup_address }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>Delivery Address</ion-label>
+            <ion-note slot="end">{{ formatAddress(orderData.Address) }}</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>Total Items</ion-label>
+            <ion-note slot="end">{{ laundryItems.length }} Items</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>Total Amount</ion-label>
+            <ion-note slot="end">${{orderData.total_amount }}</ion-note>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Laundry Items</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let item of orderData.Order_Items">
+        <ion-thumbnail slot="start">
+          <img [src]="item.Service_Category_Item?.img_url" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.Service_Category_Item?.name }}</h2>
+          <p>Quantity: {{ item.quantity }}</p>
+          <p>Price: ${{ item.Service_Category_Item?.price }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+<!-- 
+    <div class="progress-container">
+      <ion-progress-bar [value]="progressValue"></ion-progress-bar>
+      <p>{{ progressLabel }}</p>
+    </div> -->
+    <ion-button expand="block" (click)="markAsDelivered()">
+      Deliver Order
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="backbtn" routerLink="/welcome" routerDirection="back">
+        <img src="../../assets/back.svg" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <form [formGroup]="signupForm">
+    <ion-list lines="none" class="ion-margin ion-padding ion-text-center">
+      <ion-item class="ion-margin-vertical">
+        <ion-icon name="mail-outline" slot="end" color="medium">
+        </ion-icon>
+        <ion-input formControlName="email" placeholder="Enter Email Address">
+        </ion-input>
+      </ion-item>
+      <ion-text class="ion-text-left" color="danger"
+        *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+        <p class="error">*Please enter proper Email Address</p>
+      </ion-text>
+      <ion-item class="ion-margin-vertical">
+        <ion-icon (click)="onChange()" [name]="isTypePassword ? 'lock-closed-outline' : 'lock-open-outline'" slot="end"
+          [color]="isTypePassword ? 'medium' : 'primary'">
+        </ion-icon>
+        <ion-input formControlName="password" [type]="isTypePassword ? 'password' : 'text'"
+          placeholder="Enter Password">
+        </ion-input>
+      </ion-item>
+      <ion-text class="ion-text-left" color="danger"
+        *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">
+        <p class="error" *ngIf="signupForm.get('password').invalid && signupForm.get('password').errors?.['required']">
+          Please enter your Password
+        </p>
+      </ion-text>
+      <ion-row class="ion-margin-vertical" style="float: right;">
+        <ion-col size="12" class="alignItems">
+          <div align=rigth>
+            <ion-note [routerLink]="['/forgot-password-page']">Reset Password!</ion-note>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-button shape="round" (click)="onSubmit()" [routerLink]="['/apptabs/tabs/home']">Log In</ion-button>
+
+    </ion-list>
+  </form>
+  <p (click)="openWhatsApp()" class="buttom_text"> <ion-icon name="logo-whatsapp"></ion-icon>
+    didn't have an account? please contect Us</p>
+</ion-content>
